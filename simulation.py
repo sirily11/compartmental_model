@@ -12,10 +12,10 @@ death_rate = birth_rate
 # end US Data
 
 total_days = 10
-# model = SEIRModel(population=population,
-#                   per_capita_natural_death_rate=death_rate, per_capita_birth_rate=birth_rate)
-# model.animate_graph(1)
-
-model = SEISModel(population=population,
+model = SEIRModel(population=population,
                   per_capita_natural_death_rate=death_rate, per_capita_birth_rate=birth_rate)
-model.draw_graph_at()
+model.draw_graph_at(days=50)
+
+# model = SEISModel(population=population,
+#                   per_capita_natural_death_rate=death_rate, per_capita_birth_rate=birth_rate)
+# model.animate_graph()
