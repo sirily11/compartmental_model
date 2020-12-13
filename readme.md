@@ -38,3 +38,5 @@ SEIR model
 
 SEIS model
 ![SEIS model](SEIS.png)
+
+- Data: https://population.un.org/wpp/Download/Standard/CSV/

@@ -22,6 +22,10 @@ class BaseModel:
         self.index = count()
 
     def compute(self, days=1):
+        """
+        Compute the result for the future.
+        :pa
+        """
         raise NotImplementedError
 
     def values(self) -> List[BaseValue]:

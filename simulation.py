@@ -1,21 +1,19 @@
 from models.seir_model import SEIRModel
-from models.seis_model import SEISModel
-import matplotlib.pyplot as plt
-from matplotlib.animation import FuncAnimation
-from itertools import count
+from models.sir_model import SIRModel
+from data.country_data import CountryData
+from data.countries import Countries
 
-# US Data
-# https://www.macrotrends.net/countries/USA/united-states/birth-rate#:~:text=The%20current%20birth%20rate%20for,a%200.09%25%20increase%20from%202018.
-population = 331865815
-birth_rate = 11.990 / 1000
-death_rate = birth_rate
-# end US Data
+# Load data from database
+country_data = CountryData().load(Countries.United_States_of_America)
 
+# Use model
 total_days = 10
-model = SEIRModel(population=population,
-                  per_capita_natural_death_rate=death_rate, per_capita_birth_rate=birth_rate)
-model.draw_graph_at(days=50)
-
-# model = SEISModel(population=population,
-#                   per_capita_natural_death_rate=death_rate, per_capita_birth_rate=birth_rate)
+# model = SEIRModel(population=country_data.population,
+#                   per_capita_natural_death_rate=country_data.deaths_per_thousand / 1000,
+#                   per_capita_birth_rate=country_data.births_per_thousand / 1000)
 # model.animate_graph()
+
+model = SIRModel(population=country_data.population,
+                  per_capita_natural_death_rate=country_data.deaths_per_thousand / 1000,
+                  per_capita_birth_rate=country_data.births_per_thousand / 1000, i_init=100)
+model.draw_graph_at(100)

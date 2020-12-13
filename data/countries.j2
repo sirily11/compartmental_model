@@ -1,0 +1,6 @@
+from enum import Enum
+
+class Countries(Enum):
+    {%  for country in countries %}
+        {{ country.variable_name }} = "{{ country.country }}"
+    {% endfor %}
