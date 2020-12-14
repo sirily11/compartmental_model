@@ -1,3 +1,6 @@
+"""
+Auto generated class. This class will hold available countries's information
+"""
 from enum import Enum
 
 class Countries(Enum):

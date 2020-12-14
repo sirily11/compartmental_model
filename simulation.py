@@ -1,19 +1,50 @@
-from models.seir_model import SEIRModel
-from models.sir_model import SIRModel
+from typing import List
+from jinja2 import Template
+from models import SEIRModel, SIRModel, SEISModel, SIRDModel, BaseModel
 from data.country_data import CountryData
 from data.countries import Countries
+from tqdm import tqdm
 
-# Load data from database
-country_data = CountryData().load(Countries.United_States_of_America)
 
-# Use model
-total_days = 10
-# model = SEIRModel(population=country_data.population,
+class Data:
+    def __init__(self, country, paths):
+        self.country = country
+        self.paths = paths
+
+
+def generate_data_for_all_countries():
+    data_list: List[Data] = []
+    models = [SEIRModel, SIRDModel, SIRModel, SEISModel]
+
+    for country in tqdm(Countries):
+        # Load data from database
+        country_data = CountryData().load(country)
+        paths = []
+        for Model in models:
+            model = Model(population=country_data.population,
+                          per_capita_natural_death_rate=country_data.deaths_per_thousand / 1000,
+                          per_capita_birth_rate=country_data.births_per_thousand / 1000, country=country, i_init=3)
+            path = model.draw_graph_at(100)
+            paths.append(path)
+
+        data_list.append(Data(country=country, paths=paths))
+    return data_list
+
+
+def generate_html(data_list: List[Data]):
+    with open('./results/index.j2', 'r') as f:
+        template = Template(f.read())
+
+    generated = template.render(data_list=data_list)
+    with open('results/index.html', 'w') as f:
+        f.write(generated)
+
+
+generate_html(generate_data_for_all_countries())
+
+# country = Countries.United_States_of_America
+# country_data = CountryData().load(country)
+# model = SIRDModel(population=country_data.population,
 #                   per_capita_natural_death_rate=country_data.deaths_per_thousand / 1000,
-#                   per_capita_birth_rate=country_data.births_per_thousand / 1000)
-# model.animate_graph()
-
-model = SIRModel(population=country_data.population,
-                  per_capita_natural_death_rate=country_data.deaths_per_thousand / 1000,
-                  per_capita_birth_rate=country_data.births_per_thousand / 1000, i_init=100)
-model.draw_graph_at(100)
+#                   per_capita_birth_rate=country_data.births_per_thousand / 1000, country=country, i_init=3)
+# model.draw_graph_at(100)
