@@ -16,12 +16,17 @@
 
 <div class="container">
     <h1>Compartmental Model</h1>
+
+    Country's data, including Country's Name, population, birth rate and death rate, is directly from
+    <a href="https://population.un.org/wpp/Download/Standard/CSV/">United Nations Website
+    </a>
+    </span>
     <br/>
     {% for data in data_list %}
         <div class="row g-2 border bg-light mt-2">
             <h4>{{ data.country.value }}</h4>
             {% for path in data.paths %}
-                <div class="col-6">
+                <div class="col-md-6 col-12">
                     <img src="{{ path }}" class="img-fluid"/>
                 </div>
             {% endfor %}
