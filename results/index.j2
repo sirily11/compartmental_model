@@ -15,36 +15,49 @@
 
 
 <div class="container">
-    <h1>Compartmental Model</h1>
+    <div class="row">
+        <div class="col-md-2 d-none d-md-block d-mlg-block d-xl-block">
+            <nav class="navbar navbar-light bg-light">
+                <nav class="nav nav-pills flex-column">
+                    {% for country in countries %}
+                        <a class="nav-link" href="#{{ country.value }}">{{ country.value }}</a>
+                    {% endfor %}
+                </nav>
+            </nav>
+        </div>
+        <div class="col-md-10 col-12">
+            <h1>Compartmental Model</h1>
 
-    Country's data, including Country's Name, population, birth rate and death rate, is directly from
-    <a href="https://population.un.org/wpp/Download/Standard/CSV/">United Nations Website
-    </a>
-    </span>
-    <br/>
-    {% for data in data_list %}
-        <div class="row g-2 border bg-light mt-2">
-            <h4>{{ data.country.value }}</h4>
-            {% for path in data.paths %}
-                <div class="col-md-6 col-12">
-                    <img src="{{ path }}" class="img-fluid"/>
+            Country's data, including Country's Name, population, birth rate and death rate, is directly from
+            <a href="https://population.un.org/wpp/Download/Standard/CSV/">United Nations Website
+            </a>
+            </span>
+            <br/>
+            {% for data in data_list %}
+                <div class="row g-2 border bg-light mt-2"  data-bs-target="#{{ data.country.value }}" data-bs-offset="0" tabindex="0">
+                    <h4>{{ data.country.value }}</h4>
+                    {% for path in data.paths %}
+                        <div class="col-md-6 col-12">
+                            <img src="{{ path }}" class="img-fluid"/>
+                        </div>
+                    {% endfor %}
                 </div>
             {% endfor %}
         </div>
-    {% endfor %}
-</div>
 
-<!-- Optional JavaScript; choose one of the two! -->
+    </div>
 
-<!-- Option 1: Bootstrap Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
-        crossorigin="anonymous"></script>
+    <!-- Optional JavaScript; choose one of the two! -->
 
-<!-- Option 2: Separate Popper and Bootstrap JS -->
-<!--
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
--->
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+            crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
+    -->
 </body>
 </html>

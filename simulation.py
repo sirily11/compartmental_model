@@ -34,10 +34,11 @@ def generate_data_for_all_countries():
 
 
 def generate_html(data_list: List[Data]):
+    countries = [d.country for d in data_list]
     with open('./results/index.j2', 'r') as f:
         template = Template(f.read())
 
-    generated = template.render(data_list=data_list)
+    generated = template.render(data_list=data_list, countries=countries)
     with open('results/index.html', 'w') as f:
         f.write(generated)
 
