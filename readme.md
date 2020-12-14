@@ -32,11 +32,6 @@ class SEIRModel(BaseModel):
 
 ## Example output
 
-SEIR model
-
-![SEIR model](SEIR.png)
-
-SEIS model
-![SEIS model](SEIS.png)
+See website
 
 - Data: https://population.un.org/wpp/Download/Standard/CSV/
