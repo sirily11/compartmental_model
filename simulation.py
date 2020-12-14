@@ -29,7 +29,7 @@ def generate_data_for_all_countries():
             paths.append(path)
 
         data_list.append(Data(country=country, paths=paths))
-        # if len(data_list) > 2:
+        # if len(data_list) > 20:
         #     return data_list
     return data_list
 

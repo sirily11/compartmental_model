@@ -143,6 +143,7 @@ class BaseModel:
         output_file_name = join('graphs', str(self.country.value), f"{self.title}-{days}.png")
         if not exists(folder_name):
             makedirs(folder_name)
+
         plt.savefig(file_name)
         plt.clf()
         return output_file_name
