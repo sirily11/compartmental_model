@@ -28,6 +28,7 @@ def generate_data_for_all_countries():
             paths.append(path)
 
         data_list.append(Data(country=country, paths=paths))
+        # return data_list
     return data_list
 
 

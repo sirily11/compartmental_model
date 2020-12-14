@@ -140,11 +140,12 @@ class BaseModel:
         file_name = f"{self.title}-{days}.png"
         folder_name = join(path, 'graphs', str(self.country.value))
         file_name = join(folder_name, file_name)
+        output_file_name = join('graphs', str(self.country.value), f"{self.title}-{days}.png")
         if not exists(folder_name):
             makedirs(folder_name)
         plt.savefig(file_name)
         plt.clf()
-        return file_name
+        return output_file_name
 
     def animate_graph(self, figure_number=1):
         """
