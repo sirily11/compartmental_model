@@ -1,6 +1,6 @@
 from typing import List
 from jinja2 import Template
-from models import SEIRModel, SIRModel, SEISModel, SIRDModel, BaseModel, SISModel
+from models import SEIRModel, SIRModel, SEISModel, SIRDModel, BaseModel, SISModel, SEIRSocialDistanceModel
 from data.country_data import CountryData
 from data.countries import Countries
 from tqdm import tqdm
@@ -15,7 +15,7 @@ class Data:
 def generate_data_for_all_countries():
     data_list: List[Data] = []
     # Add new model here
-    models = [SEIRModel, SIRDModel, SIRModel, SEISModel, SISModel]
+    models = [SEIRModel, SEIRSocialDistanceModel, SIRDModel, SIRModel, SEISModel, SISModel]
 
     for country in tqdm(Countries):
         # Load data from database
@@ -29,7 +29,8 @@ def generate_data_for_all_countries():
             paths.append(path)
 
         data_list.append(Data(country=country, paths=paths))
-        # return data_list
+        # if len(data_list) > 2:
+        #     return data_list
     return data_list
 
 

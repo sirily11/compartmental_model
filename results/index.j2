@@ -17,7 +17,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-2 d-none d-md-block d-mlg-block d-xl-block">
-            <nav class="navbar navbar-light bg-light">
+            <nav class="navbar navbar-light bg-light mt-2 sticky-top" id="navbar">
                 <nav class="nav nav-pills flex-column">
                     {% for country in countries %}
                         <a class="nav-link" href="#{{ country.value }}">{{ country.value }}</a>
@@ -25,7 +25,7 @@
                 </nav>
             </nav>
         </div>
-        <div class="col-md-10 col-12">
+        <div class="col-md-10 col-12" data-bs-target="#navbar" data-bs-offset="0" tabindex="0">
             <h1>Compartmental Model</h1>
 
             Country's data, including Country's Name, population, birth rate and death rate, is directly from
@@ -34,7 +34,7 @@
             </span>
             <br/>
             {% for data in data_list %}
-                <div class="row g-2 border bg-light mt-2"  data-bs-target="#{{ data.country.value }}" data-bs-offset="0" tabindex="0">
+                <div class="row g-2 border bg-light mt-2" id="{{ data.country.value }}" >
                     <h4>{{ data.country.value }}</h4>
                     {% for path in data.paths %}
                         <div class="col-md-6 col-12">
